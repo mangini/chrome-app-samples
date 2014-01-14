@@ -1,14 +1,12 @@
 {
-  "name": "Syncable Storage Sample",
-  "version": "1.1",
+  "name": "Storage",
+  "version": "1.0",
   "manifest_version": 2,
-  "minimum_chrome_version": "23",
+  "minimum_chrome_version": "29",
   "app": {
     "background": {
-      "scripts": ["background.js"]
+      "scripts": ["main.js"]
     }
   },
-  "permissions": [
-    "unlimitedStorage"
-  ]
+  "permissions": ["storage", "unlimitedStorage"]
 }

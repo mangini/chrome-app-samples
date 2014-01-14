@@ -1,0 +1,164 @@
+html, body {
+  margin: 0;
+  font-family: 'Open Sans Regular', sans;
+  color: #666;
+  background: #fafafa;
+  overflow-y: auto;
+}
+
+.header {
+  text-align: center;
+  padding: 10px 0 10px 0;
+}
+
+.header hr {
+  height: 6px;
+  border: none;
+  margin-top: 20px;
+  background: -webkit-linear-gradient(0deg,
+    rgb(51,105,232) 0%,
+    rgb(51,105,232) 25%,
+    rgb(222,30,37) 25%,
+    rgb(222,30,37) 50%,
+    rgb(255, 210, 0) 50%,
+    rgb(255, 210, 0) 75%,
+    rgb(76,187,71) 75%,
+    rgb(76,187,71) 100%
+    );
+ }
+
+.header .links * {
+  margin-left: 5px;
+}
+
+.header .links a {
+  color: #666;
+}
+
+.header:hover .links a {
+  color: #3399cc;
+}
+
+.flows h2 {
+  margin-left: 5px;
+  margin-bottom: 10px;
+}
+
+.flow {
+  margin: 10px 20px 20px 20px;
+  border: 1px solid #ddd;
+  padding: 8px;
+  background: white;
+  position: relative;
+}
+
+.flow:after {
+  content: '';
+  clear: right;
+}
+
+.flow .side {
+  float: right;
+  margin-top: 15px;
+}
+
+.flow > button, .flow > .side > button {
+  cursor: pointer;
+  background: -webkit-linear-gradient(top,#008dfd 0,#0370ea 100%);
+  border: 1px solid #076bd2;
+  text-shadow: 1px 1px 1px #076bd2;
+  color: white;
+  font-weight: 700;
+  font-size: 13px;
+  margin: .5em 0 1em;
+  padding: 8px 17px 8px 17px;
+  border-radius: 3px;
+  opacity: 0.2;
+  -webkit-transition: opacity 3s;
+}
+
+.flow:hover > button, .flow:hover > .side > button {
+  -webkit-transition: opacity 0.2s;
+  opacity: 1;
+}
+
+.flow button.small {
+  padding: 3px 5px;
+  margin: 0 0 0 3px;
+}
+
+.flow .container {
+  min-height: 22px;
+  background: rgb(231, 231, 231);
+  padding: 8px;
+}
+
+.flow .container .element {
+  display: inline-block;
+  border: 1px solid #333;
+  background-color: white;
+}
+
+.flow .container .element > * {
+  display: inline-block;
+  padding: 2px 4px;
+  color: #666;
+  background: white;
+}
+.flow .container .element .remove {
+  display: inline-block;
+  padding: 3px;
+  border: none;
+  border-left: 1px solid #999;
+  color: #999;
+  cursor: pointer;
+  background: white;
+}
+
+.flow .container .element:hover .remove {
+  background: -webkit-linear-gradient(top,#008dfd 0,#0370ea 100%);
+  text-shadow: 1px 1px 1px #076bd2;
+  color: white;
+}
+
+.flow .onlineindicator {
+  background: #CAEBD7;
+}
+
+body.offline .flow .onlineindicator {
+  background: rgb(253, 208, 208);
+}
+
+.flow button.error {
+  background: -webkit-linear-gradient(top,#008dfd 0,#0370ea 100%);
+  border: 1px solid #076bd2;
+  text-shadow: 1px 1px 1px #076bd2;
+  color: white;
+  font-weight: 700;
+  font-size: 13px;
+  margin: .5em 0 1em;
+  padding: 8px 17px 8px 17px;
+  border-radius: 3px;
+}
+
+.flow button:disabled {
+  background: -webkit-linear-gradient(top, #dcdcdc 0, #fafafa 100%);
+  color: #999;
+  text-shadow: 1px 1px 1px #fafafa;
+  border: 1px solid #ddd;
+  cursor: auto;
+}
+
+.log {
+  margin: 10px 20px 20px 20px;
+}
+
+.log textarea {
+  width: 100%;
+  min-height: 200px;
+  font-family: "Courier New", Courier, monospace;
+  margin: 2px;
+  background: #FFFFFF;
+  color: #727272;
+  border: 1px solid rgb(182, 182, 182);
+}
