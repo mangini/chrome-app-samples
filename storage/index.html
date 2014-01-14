@@ -1,0 +1,48 @@
+<html>
+  <head>
+    <title>Storage API Sample App</title>
+    <link rel="stylesheet" type="text/css" href="sample_support/standard.css">
+    <script src="storage.js"></script>
+    <script src="sample_support/sample_support.js"></script>
+  </head>
+  <body>
+    <div class="header">
+      <h1>Storage APIs</h1>
+      <div class="links">
+        Learn more:
+          <a target="_blank" href="developer.chrome.com/apps/app_identity.html">API docs</a>
+          <a id="_open_snippets" href="#">Source</a>
+      </div>
+      <hr>
+    </div>
+    <div class="flows">
+      <h2>(key,value) storage</h2>
+      <div class="flow">
+        <div class="side">
+          <button class="small">set</button>
+          <button class="small">get</button>
+          <button class="small">clear</button>
+        </div>
+        <h3>Local storage</h3>
+        <div class="container"><div class="element"><div>key1=value1</div><button class="remove small">x</button></div></div>
+        <h3>Sync storage</h3>
+        <div class="container onlineindicator"></div>
+      </div>
+      <h2>File storage</h2>
+      <div class="flow">
+        <h3>Extended HTML5 Filesystem</h3>
+        <div class="container"></div>
+        <h3>Sync Filesystem</h3>
+        <div class="container onlineindicator"></div>
+      </div>
+      <h2>Relational database</h2>
+      <div class="flow">
+        <h3>IndexedDB</h3>
+        <div class="container"></div>
+      </div>
+    </div>
+   <div class="log">
+      <textarea id="__sample_support_logarea" disabled></textarea>
+   </div>
+  </body>
+</html>
