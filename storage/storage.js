@@ -191,17 +191,18 @@ var googlePlusUserLoader = (function() {
     });
   }
 
-  function refreshContainer(containerId) {
-    var container = document.getElementById(containerId);
-    sampleSupport.clearContainer(container);
+  function refreshContainer(storageId) {
+    var stObj = (storageId=='_localstorage'?chrome.storage.local:chrome.storage.sync);
     // in get, you use null or an empty object to return all keys
     stObj.get(null, function(data) {
+      var container = document.getElementById(storageId);
+      sampleSupport.clearContainer(container);
       for (var key in data) {
         sampleSupport.addRemovableElement( 
            container,
            key+'='+data[key], 
            function(el) { 
-             removeItemCallback(containerId, key);
+             removeItemCallback(storageId, key);
            });
       }
     });
@@ -213,20 +214,20 @@ var googlePlusUserLoader = (function() {
     refreshContainer(containerId);
   }
 
-  function addKeyValueItem(storage) {
-    var stObj = (storage=='_localstorage'?chrome.storage.local:chrome.storage.sync);
+  function addKeyValueItem(storageId) {
+    var stObj = (storageId=='_localstorage'?chrome.storage.local:chrome.storage.sync);
     var key = 'key' + Math.floor(Math.random()*1000);
     var value = Math.floor(Math.random()*1000);
     stObj.set({key: value}, function() {
-      sampleSupport.log('added pair ('+key+','+value+') to '+storage);
-      refreshContainer();
+      sampleSupport.log('added pair ('+key+','+value+') to '+storageId);
+      refreshContainer(storageId);
     });
   }
 
-  function clearAll(storage) {
-    var stObj = (storage=='_localstorage'?chrome.storage.local:chrome.storage.sync);
+  function clearAll(storageId) {
+    var stObj = (storageId=='_localstorage'?chrome.storage.local:chrome.storage.sync);
     stObj.clear(function() {
-      sampleSupport.log('Storage '+storage+' should be empty now.');
+      sampleSupport.log('Storage '+storageId+' should be empty now.');
     });
   }
 
