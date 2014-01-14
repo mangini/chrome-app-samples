@@ -14,7 +14,7 @@
     </p>
 
     <p>chrome.app.<b>window actions</b>, delayed:
-      <input id="delay-slider" type ="range" min ="0000" max="20000" step="1000" value="2000"/>
+      <input id="delay-slider" type ="range" min ="0" max="20000" step="1000" value="0"/>
       <span id="delay-label"></span>
       <br>
       <button id="fullscreen">Fullscreen</button>
@@ -23,6 +23,7 @@
       <button id="restore">Restore</button>
       <button id="hide">Hide</button>
       <button id="show">Show</button>
+      <label id="alwaysOnTopLabel"><input type="checkbox" id="alwaysOnTop" />Always On Top</label>
       <br>
       <button id="move">Move To (L,T)</button> /
       <button id="resize">Resize To (W,H)</button> /
@@ -32,6 +33,16 @@
       <input type="number" class="size" id="moveWindowTop" step=1 />
       Width, Height: <input type="number" class="size" id="resizeWindowWidth" step=1 />
       <input type="number" class="size" id="resizeWindowHeight" step=1 />
+      <br>
+      <button id="setWindowMinWidth">Set Min Width</button>:
+      <input type="number" class="size" id="windowMinWidth" step=1 />,
+      <button id="setWindowMaxWidth">Set Max Width</button>:
+      <input type="number" class="size" id="windowMaxWidth" step=1 />
+      <br>
+      <button id="setWindowMinHeight">Set Min Height</button>:
+      <input type="number" class="size" id="windowMinHeight" step=1 />,
+      <button id="setWindowMaxHeight">Set Max Height</button>:
+      <input type="number" class="size" id="windowMaxHeight" step=1 />
     </p>
 
     <p><b>Create</b> a new window:<br>
@@ -50,6 +61,7 @@
       <label>Min<input type="number" class="size" id="newWindowHeightMin" step=1 /></label>
       <label><input type="number" class="size" id="newWindowHeightMax" step=1 />Max Height</label>
       <label><input type="checkbox" id="newWindowResizable" checked/>Resizable</label>
+      <label id="newWindowOnTopLabel"><input type="checkbox" id="newWindowOnTop" />Always On Top</label>
       <br>
       <label><input type="radio" name="newWindowHidden" value="visible" checked/>Visible</label>
       <label><input type="radio" name="newWindowHidden" value="hidden" />Hidden, then shown</label>

@@ -16,6 +16,7 @@ chrome.app.runtime.onLaunched.addListener(function() {
   var height = 300;
 
   chrome.app.window.create('index.html', {
+    id: "helloWorldID",
     bounds: {
       width: width,
       height: height,
@@ -31,8 +32,8 @@ and, at that point, creates a window using a basic HTML page, index.html, as the
 
 ## Resources
 
-* [Runtime](http://developer.chrome.com/trunk/apps/app.runtime.html)
-* [Window](http://developer.chrome.com/trunk/apps/app.window.html)
+* [Runtime](http://developer.chrome.com/apps/app.runtime.html)
+* [Window](http://developer.chrome.com/apps/app.window.html)
      
 ## Screenshot
 ![screenshot](https://raw.github.com/GoogleChrome/chrome-app-samples/master/hello-world/assets/screenshot_1280_800.png)

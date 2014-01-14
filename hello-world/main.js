@@ -1,8 +1,8 @@
 /**
  * Listens for the app launching then creates the window
  *
- * @see http://developer.chrome.com/trunk/apps/app.runtime.html
- * @see http://developer.chrome.com/trunk/apps/app.window.html
+ * @see http://developer.chrome.com/apps/app.runtime.html
+ * @see http://developer.chrome.com/apps/app.window.html
  */
 chrome.app.runtime.onLaunched.addListener(function() {
   // Center window on screen.
@@ -12,6 +12,7 @@ chrome.app.runtime.onLaunched.addListener(function() {
   var height = 300;
 
   chrome.app.window.create('index.html', {
+    id: "helloWorldID",
     bounds: {
       width: width,
       height: height,

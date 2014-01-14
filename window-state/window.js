@@ -5,6 +5,10 @@ var fullscreenchangeCount = 0;
 var fullscreenerrorCount = 0;
 var newWindowOffset = 100;
 
+// chrome.app.window alwaysOnTop property is supported in Chrome M32 or later.
+// The option will be hidden if not supported in the current browser version.
+var isAlwaysOnTopSupported = typeof(chrome.app.window.current().setAlwaysOnTop) !== 'undefined';
+
 // Helper functions
 $ = function(selector) { return document.querySelector(selector); }
 
@@ -31,6 +35,8 @@ function createNewWindow(optionsDictionary) {
   setIfANumber(optionsDictionary, 'minHeight', parseInt($('#newWindowHeightMin').value));
   setIfANumber(optionsDictionary, 'maxHeight', parseInt($('#newWindowHeightMax').value));
   optionsDictionary.resizable = $('#newWindowResizable').checked;
+  if (isAlwaysOnTopSupported)
+    optionsDictionary.alwaysOnTop = $('#newWindowOnTop').checked;
 
   optionsDictionary.hidden = $('[value=hidden]').checked;
   var showAfterCreated = function (win) {
@@ -106,6 +112,10 @@ $('#show').onclick = function(e) {
   setTimeout(chrome.app.window.current().show, $('#delay-slider').value);
 };
 
+$('#alwaysOnTop').onchange = function(e) {
+  chrome.app.window.current().setAlwaysOnTop($('#alwaysOnTop').checked);
+};
+
 $('#move').onclick = function(e) {
   var x = parseInt($('#moveWindowLeft').value);
   var y = parseInt($('#moveWindowTop').value);
@@ -135,6 +145,42 @@ $('#setbounds').onclick = function(e) {
   setTimeout(
     function() {
       chrome.app.window.current().setBounds(bounds);
+    },
+    $('#delay-slider').value);
+};
+
+$('#setWindowMinWidth').onclick = function(e) {
+  var value = parseInt($('#windowMinWidth').value);
+  setTimeout(
+    function() {
+      chrome.app.window.current().setMinWidth(value);
+    },
+    $('#delay-slider').value);
+};
+
+$('#setWindowMaxWidth').onclick = function(e) {
+  var value = parseInt($('#windowMaxWidth').value);
+  setTimeout(
+    function() {
+      chrome.app.window.current().setMaxWidth(value);
+    },
+    $('#delay-slider').value);
+};
+
+$('#setWindowMinHeight').onclick = function(e) {
+  var value = parseInt($('#windowMinHeight').value);
+  setTimeout(
+    function() {
+      chrome.app.window.current().setMinHeight(value);
+    },
+    $('#delay-slider').value);
+};
+
+$('#setWindowMaxHeight').onclick = function(e) {
+  var value = parseInt($('#windowMaxHeight').value);
+  setTimeout(
+    function() {
+      chrome.app.window.current().setMaxHeight(value);
     },
     $('#delay-slider').value);
 };
@@ -202,6 +248,12 @@ function updateCurrentStateReadout() {
   $('#moveWindowTop').placeholder = chrome.app.window.current().getBounds().top;
   $('#resizeWindowWidth').placeholder = chrome.app.window.current().getBounds().width;
   $('#resizeWindowHeight').placeholder = chrome.app.window.current().getBounds().height;
+
+  $('#windowMinWidth').placeholder = chrome.app.window.current().getMinWidth();
+  $('#windowMaxWidth').placeholder = chrome.app.window.current().getMaxWidth();
+  $('#windowMinHeight').placeholder = chrome.app.window.current().getMinHeight();
+  $('#windowMaxHeight').placeholder = chrome.app.window.current().getMaxHeight();
+
   $('#newWindowWidthMin').placeholder = chrome.app.window.current().getBounds().width;
   $('#newWindowWidthMax').placeholder = chrome.app.window.current().getBounds().width;
   $('#newWindowHeightMin').placeholder = chrome.app.window.current().getBounds().height;
@@ -211,3 +263,11 @@ function updateCurrentStateReadout() {
 // just to be paranoid.
 chrome.app.window.current().onBoundsChanged.addListener(updateCurrentStateReadout);
 setInterval(updateCurrentStateReadout, 1000);
+
+// Set initial value of always on top
+if (isAlwaysOnTopSupported) {
+  $('#alwaysOnTop').checked = chrome.app.window.current().isAlwaysOnTop();
+} else {
+  $('#alwaysOnTopLabel').style.visibility = 'hidden';
+  $('#newWindowOnTopLabel').style.visibility = 'hidden';
+}
